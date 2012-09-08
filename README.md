@@ -38,8 +38,6 @@ Use any IMAP (Mutt, Thunderbird etc) compatible client for sending/receiving mai
 
 ### Spam filtering
 
-Spam filtering:- 
-
 Combating spam includes the following measures:-
 
 -   DSPAM
