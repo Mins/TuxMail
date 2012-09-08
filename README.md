@@ -19,7 +19,7 @@ The following are installed:-
 ### Compatibility
 
 -   Debian 6
--   Ubuntu 10.10 and above
+-   Ubuntu 11.10 and above
 
 ### Usage
 
