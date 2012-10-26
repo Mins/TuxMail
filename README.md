@@ -25,6 +25,9 @@ The following are installed:-
 
 First ensure that the MX and A records for your domain have been setup accordingly.
 
+    # Edit options to enter server IP, hostname etc
+    nano options.conf
+
     # Install mail stack
     ./setup.sh install
 
