@@ -28,7 +28,7 @@ function install_postfix_dovecot {
     echo "postfix postfix/main_mailer_type select Internet Site" | debconf-set-selections
     echo "postfix postfix/mailname string $HOSTNAME_FQDN" | debconf-set-selections
     echo "postfix postfix/destinations string localhost.localdomain, localhost" | debconf-set-selections
-    aptitude -y install postfix 
+    aptitude -y install postfix
     aptitude -y install dovecot-common dovecot-imapd dovecot-pop3d dovecot-sieve dspam
     # Install SPF filtering
     aptitude -y install postfix-policyd-spf-python
@@ -48,7 +48,7 @@ function configure_postfix {
     # Add basic spam filtering to smtpd_recipient_restrictions
     # Configure virtual domains
     # Virtual domains mapping stored in /etc/postfix/virtual_mailbox_users
-    cat ./config/postfix_main.conf >> /etc/postfix/main.cf 
+    cat ./config/postfix_main.conf >> /etc/postfix/main.cf
 
     # Enable postfix cram-md5 password format
     echo "mech_list: cram-md5" >> /etc/postfix/sasl/smtpd.conf
@@ -64,7 +64,7 @@ function configure_postfix {
     # Forward incoming mails to dovecot LDA to deliver mails to virtual inboxes
     # so that sieve, quotas and other plugins can be enabled
     # Enable SPF check
-    cat ./config/postfix_master.conf > /etc/postfix/master.cf 
+    cat ./config/postfix_master.conf > /etc/postfix/master.cf
 
 } # End function configure_postfix
 
@@ -92,9 +92,9 @@ function configure_dovecot {
 
     # From options.conf, Debian = 1, Ubuntu = 2
     if [ $DISTRO -eq 1 ]; then
-        cat ./config/dovecot.conf >> /etc/dovecot/dovecot1.conf 
+        cat ./config/dovecot.conf >> /etc/dovecot/dovecot1.conf
     else
-        cat ./config/dovecot.conf >> /etc/dovecot/dovecot2.conf 
+        cat ./config/dovecot.conf >> /etc/dovecot/dovecot2.conf
     fi # End if distro == 1
 
 
@@ -135,7 +135,7 @@ function configure_dspam {
         if [ $ARCHITECTURE -eq 32 ]; then
             cp ./dovecot-antispam/lib90_antispam_plugin_deb32.so /usr/lib/dovecot/modules/lib90_antispam_plugin.so
         else
-            cp ./dovecot-antispam/lib90_antispam_plugin_deb64.so /usr/lib/dovecot/modules/lib90_antispam_plugin.so       
+            cp ./dovecot-antispam/lib90_antispam_plugin_deb64.so /usr/lib/dovecot/modules/lib90_antispam_plugin.so
         fi
     else
         # Ubuntu 12.04 has antispam package in repo
@@ -227,6 +227,7 @@ fi
 
 case $1 in
 install)
+    apt-get update && apt-get -y install aptitude
     configure_hostname
     install_postfix_dovecot
     configure_postfix
