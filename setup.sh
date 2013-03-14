@@ -92,9 +92,9 @@ function configure_dovecot {
 
     # From options.conf, Debian = 1, Ubuntu = 2
     if [ $DISTRO -eq 1 ]; then
-        cat ./config/dovecot.conf >> /etc/dovecot/dovecot1.conf
+        cat ./config/dovecot1.conf >> /etc/dovecot/dovecot.conf
     else
-        cat ./config/dovecot.conf >> /etc/dovecot/dovecot2.conf
+        cat ./config/dovecot2.conf >> /etc/dovecot/dovecot.conf
     fi # End if distro == 1
 
 
