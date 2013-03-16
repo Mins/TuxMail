@@ -19,7 +19,13 @@ function add_mail_user {
     fi
 
     # Use doveadm pw tool to generate cram-md5 password
-    user_password=`doveadm pw`
+    # From options.conf, Debian = 1, Ubuntu = 2
+    if [ $DISTRO -eq 1 ]; then
+        user_password=`dovecotpw`
+    else
+        user_password=`doveadm pw`
+    fi
+
     echo "$user@$domain:$user_password" >> /etc/dovecot/passwd
 
     # Create the needed Maildir directories
