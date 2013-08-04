@@ -1,5 +1,7 @@
  #!/bin/sh
 
+source ./options.conf
+
 function add_mail_user {
 
     check_user_exist
